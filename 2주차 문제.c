@@ -39,7 +39,7 @@ int main()
         sum2+=num1[i];
     }
     pan=sum1/sum2*100.0;
-    printf("총 판매량:%f (판매율:%f%)\n",sum1,pan);
+    printf("총 판매량:%.0f (판매율:%.2f%)\n",sum1,pan);
     for(int i=1;i<=n;i++)
     {
         if(num2[i]>num2[mx])
