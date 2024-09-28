@@ -1,4 +1,6 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include<stdlib.h>
 #define SIZE 5
 
 void dlqrh(int* array, int size)
@@ -45,16 +47,15 @@ void vksao(int* array, int size)
         scanf("%d", &array[k]);
     }
 }
-void tkavnd(int* b, int* c, char *ch, int size)
+void tkavnd(int* b, int* c, char name[SIZE][100], int size)
 {
     float sale = 0, e = 0;
     int n = 0, m = 0;
 
-    printf("재고 수량: ");
+    printf("재고 수량:\n");
     for (int i = 0; i < size; i++) {
-        printf("%d ", b[i] - c[i]);
+        printf("상품명 %s: %d개 남음\n", name[i], b[i] - c[i]);
     }
-    printf("\n");
 
     for (int i = 0; i < size; i++) {
         sale += c[i];
@@ -69,33 +70,32 @@ void tkavnd(int* b, int* c, char *ch, int size)
         if (c[i] < c[m]) m = i;
     }
 
-    printf("가장 많이 팔린 상품 ID%d,상품명%c :, 판매량 : %d\n",n, ch[n], c[n]);
-    printf("가장 적게 팔린 상품 ID%d,상품명%c :, 판매량 : %d\n",m, ch[m], c[m]);
+    printf("가장 많이 팔린 상품: %s, 판매량: %d\n", name[n], c[n]);
+    printf("가장 적게 팔린 상품: %s, 판매량: %d\n", name[m], c[m]);
 
     for (int i = 0; i < size; i++) {
         if (b[i] - c[i] <= 2) {
-            printf("상품ID %d 상품명%c: 재고부족 (%d)\n", i,c[i], b[i] - c[i]);
+            printf("상품명 %s: 재고부족 (%d개 남음)\n", name[i], b[i] - c[i]);
         }
     }
 }
-void tkdvnaaud(char *ch,int size)
+void tkdvnaaud(char name[SIZE][100], int size)
 {
-    for(int i=0;i<size;i++)
+    for (int i = 0; i < size; i++)
     {
         printf("ID %d 상품명:",i+1);
-        scanf("%c",&ch[i]);
+        scanf("%s", name[i]);
     }
-   
 }
 int main()
 {
     int n;
     int num1[SIZE] = { 0 };
     int num2[SIZE] = { 0 };
-    char name[SIZE];
+    char name[SIZE][100];
     while (1)
     {
-        printf("원하는 메뉴를 선택하세요(1.입고,2.판매,3.상품현황,4.상품명 입력,5.종료)");
+        printf("원하는 메뉴를 선택하세요 (1.입고, 2.판매, 3.상품현황, 4.상품명 입력, 5.종료): ");
         scanf("%d", &n);
         if (n == 1)
             dlqrh(num1, SIZE);
@@ -104,11 +104,10 @@ int main()
         else if (n == 3)
             tkavnd(num1, num2, name, SIZE);
         else if (n == 4)
-            tkdvnaaud(name,SIZE);
+            tkdvnaaud(name, SIZE);
         else if (n == 5)
             break;
     }
-    
 
     return 0;
 }
