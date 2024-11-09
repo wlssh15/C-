@@ -39,7 +39,7 @@ void loadFile(POINT p[], int size) {
 int main() {
 	POINT p[10];
 	makeRandomPoints(p, 10);
-	pritnPoints(p, 10);
+	printPoints(p, 10);
 	saveFile(p, 10);
 	return 0;
 }
